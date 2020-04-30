@@ -1,9 +1,16 @@
 import React from "react";
+import JobLine from "./JobLine";
 
-function JobScript() {
+function JobScript(props) {
   return (
-    <div className="jobScript">
-      <p>JobScript</p>
+    <div className="jobContainer jobScript">
+      <div className="titleBar">
+        <p>gian-thinkpad</p>
+      </div>
+      <div className="helpBar">
+        <p>File</p>
+      </div>
+      <JobLine value={props.jobName} />
     </div>
   );
 }
