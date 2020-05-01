@@ -5,22 +5,22 @@ import JobScript from "./JobScript";
 class Main extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      jobName: "Job name state",
-    };
+    this.state = {};
 
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
-    this.setState({ jobName: event.target.value });
+    const { name, value } = event.target;
+    console.log(name, value);
+    this.setState({ [name]: value });
   }
   render() {
     return (
       <div>
         <h2>Job Settings</h2>
         <div className="jobWrapper">
-          <JobForm jobName={this.state.jobName} onChange={this.handleChange} />
-          <JobScript jobName={this.state.jobName} />
+          <JobForm onChange={this.handleChange} />
+          <JobScript job={this.state} />
         </div>
       </div>
     );
