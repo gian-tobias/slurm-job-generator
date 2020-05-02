@@ -2,9 +2,9 @@ import React from "react";
 
 function JobLine(props) {
   return (
-    <p>
-      {props.prefix}={props.value}
-    </p>
+    <pre>
+      #SBATCH {props.prefix}={props.value}
+    </pre>
   );
 }
 

@@ -5,14 +5,38 @@ function JobScript(props) {
   const PREFIX_TABLE = {
     jobName: "--job-name",
     nodes: "--node",
-    ntasks: "--ntasks-per-node",
+    ntasks: "--ntasks",
+    ntasksNode: "--ntasks-per-node",
+    partition: "--partition",
+    qos: "--qos",
+    memory: "--memory",
+    output: "--output",
+    error: "--error",
+    email: "--mail-user",
+    emailEvent: "--mail-event",
+    nodelist: "--nodelist",
+    jobArray: "--array",
+    gpu: "--gres=gpu:",
+    requeue: "--requeue",
   };
-  console.log(props.job);
-  const values = Object.entries(props.job).map((key) => {
-    if (key[1]) return <JobLine prefix={PREFIX_TABLE[key[0]]} value={key[1]} />;
+
+  const { job } = props;
+  const keys = Object.keys(job);
+  const renderScript = keys.map((key, index) => {
+    if (job[key]) {
+      console.log(index);
+      return (
+        <JobLine key={index} prefix={PREFIX_TABLE[key]} value={job[key]} />
+      );
+    }
     return null;
   });
-  console.log(values);
+
+  // const values = Object.entries(props.job).map((key) => {
+  //   if (key[1]) return <JobLine prefix={PREFIX_TABLE[key[0]]} value={key[1]} />;
+  //   return null;
+  // });
+
   return (
     <div className="jobContainer jobScript">
       <div className="titleBar">
@@ -21,8 +45,8 @@ function JobScript(props) {
       <div className="helpBar">
         <p>File</p>
       </div>
-      <p>#!/bin/bash</p>
-      {values}
+      <pre>#!/bin/bash</pre>
+      {renderScript}
       {/* <JobLine value={props.job.jobName} />
       <JobLine value={props.job.nodes} /> */}
     </div>
