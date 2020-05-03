@@ -7,7 +7,8 @@
   font-weight: 400;
 }
 body {
-  background-color: #31006c;
+  /*background-color: #31006c;*/
+  background-color: #252247;
 }
 
 ul {
@@ -35,7 +36,7 @@ header li {
   margin: 0 5px;
 }
 .container {
-  background-color: #31006c;
+  background-color: #252247;
   width: 1270px;
   max-width: 100%;
   margin: 0 auto;
@@ -49,28 +50,86 @@ header li {
 }
 
 .jobContainer {
-  min-width: 600px;
+  /* min-width: 600px; */
+  width: 45%;
   min-height: 70vh;
-  border-radius: 8px 8px 0 0;
+  height: 100%;
+  /* flex: 1; */
+}
+
+@media (max-width: 900px) {
+  .jobWrapper {
+    flex-direction: column;
+  }
+  .jobContainer {
+    width: 90%;
+    margin: 10px auto;
+  }
 }
 
 .jobForm {
-  background-color: #31006c;
+  background-color: #252247;
+  border: 2px solid #fafafa;
+  border-radius: 6px;
+  padding: 10px;
+}
+.jobForm h3 {
+  text-align: center;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.jobForm input {
+  background-color: #252247;
+  color: #fff;
+  /* min-width: 300px;
+  min-height: 30px; */
+  border: none;
+  border-bottom: 2px solid #fafafa;
+  padding: 2px;
+  outline: none;
+  margin: 5px 0 15px 0;
+  width: 60%;
 }
 
-.jobForm input {
+.jobForm label {
+  font-size: 0.9em;
   display: block;
+}
+
+.btn {
+  margin: 10px 10px 15px 0;
+  background-color: #252247;
+  color: #fafafa;
+  border: 1.5px solid #fafafa;
+  border-radius: 3px;
+  padding: 3px 8px;
+}
+.btn:hover {
+  cursor: pointer;
+  background-color: #8ec1ef;
+}
+
+.btnActive {
+  background-color: #197ad1;
+}
+
+.memBtn {
+  width: 90%;
+  color: red;
 }
 
 .jobScript {
   background-color: #232729;
   color: #fff;
-  border: 0.8px solid black;
+  border: 0.8px solid #000;
+  border-radius: 8px 8px 0 0;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .jobScript pre {
   margin: 0;
+  margin-left: 6px;
   font-family: "Roboto Mono", monospace;
   font-size: 15px;
 }

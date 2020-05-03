@@ -4,16 +4,16 @@ import JobLine from "./JobLine";
 function JobScript(props) {
   const PREFIX_TABLE = {
     jobName: "--job-name",
-    nodes: "--node",
+    nodes: "--nodes",
     ntasks: "--ntasks",
     ntasksNode: "--ntasks-per-node",
     partition: "--partition",
     qos: "--qos",
-    memory: "--memory",
+    memory: "--mem",
     output: "--output",
     error: "--error",
     email: "--mail-user",
-    emailEvent: "--mail-event",
+    emailEvent: "--mail-type",
     nodelist: "--nodelist",
     jobArray: "--array",
     gpu: "--gres=gpu:",
@@ -23,10 +23,20 @@ function JobScript(props) {
   const { job } = props;
   const keys = Object.keys(job);
   const renderScript = keys.map((key, index) => {
-    if (job[key]) {
-      console.log(index);
+    console.log(job[key]);
+    let jobValue = job[key];
+    if (key === "emailEvent" && jobValue.length) {
       return (
-        <JobLine key={index} prefix={PREFIX_TABLE[key]} value={job[key]} />
+        <JobLine
+          key={index}
+          prefix={PREFIX_TABLE[key]}
+          value={jobValue.join(",").toUpperCase()}
+        />
+      );
+    } else if (jobValue.length) {
+      console.log(jobValue.length);
+      return (
+        <JobLine key={index} prefix={PREFIX_TABLE[key]} value={jobValue} />
       );
     }
     return null;

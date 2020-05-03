@@ -3,20 +3,36 @@ import React from "react";
 function JobForm(props) {
   return (
     <div className="jobContainer jobForm">
-      <p>gian-thinkpad</p>
       <div>
+        <h3>Job Configuration</h3>
         <label htmlFor="partition">Partition</label>
         <div className="buttonGrp">
-          <button name="debug" onClick={props.handlePartitionClick}>
+          <button
+            name="debug"
+            className="btn"
+            onClick={props.handlePartitionClick}
+          >
             Debug
           </button>
-          <button name="batch" onClick={props.handlePartitionClick}>
+          <button
+            name="batch"
+            className="btn"
+            onClick={props.handlePartitionClick}
+          >
             Batch
           </button>
-          <button name="serial" onClick={props.handlePartitionClick}>
+          <button
+            name="serial"
+            className="btn"
+            onClick={props.handlePartitionClick}
+          >
             Serial
           </button>
-          <button name="gpu" onClick={props.handlePartitionClick}>
+          <button
+            name="gpu"
+            className="btn"
+            onClick={props.handlePartitionClick}
+          >
             GPU
           </button>
         </div>
@@ -24,6 +40,34 @@ function JobForm(props) {
       <div>
         <label htmlFor="jobName">Job name</label>
         <input type="text" name="jobName" onChange={props.onChange} />
+      </div>
+      <div>
+        <label htmlFor="email">Job Alert Email</label>
+        <input type="text" name="email" onChange={props.onChange} />
+      </div>
+      <div>
+        <label htmlFor="emailEvent">Email Event</label>
+        <div className="buttonGrp">
+          <button name="begin" className="btn" onClick={props.handleEmailClick}>
+            Begin
+          </button>
+          <button name="end" className="btn" onClick={props.handleEmailClick}>
+            End
+          </button>
+          <button
+            name="requeue"
+            className="btn"
+            onClick={props.handleEmailClick}
+          >
+            Requeue
+          </button>
+          <button name="fail" className="btn" onClick={props.handleEmailClick}>
+            Fail
+          </button>
+          <button name="all" className="btn" onClick={props.handleEmailClick}>
+            All
+          </button>
+        </div>
       </div>
       <div>
         <label htmlFor="nodes">Number of nodes</label>
@@ -38,8 +82,13 @@ function JobForm(props) {
         <input type="text" name="ntasks" onChange={props.onChange} />
       </div>
       <div>
-        <label htmlFor="memory">RAM per node</label>
-        <input type="text" name="memory" onChange={props.onChange} />
+        <label htmlFor="memory">RAM per node (default: MB)</label>
+        <div className="memBtn">
+          <input type="text" name="memory" onChange={props.onChange} />
+          <button className="btn" onClick={props.handleGigClick}>
+            GB
+          </button>
+        </div>
       </div>
       <div>
         <label htmlFor="output">Standard Output File</label>
@@ -49,16 +98,7 @@ function JobForm(props) {
         <label htmlFor="error">Standard Error File</label>
         <input type="text" name="error" onChange={props.onChange} />
       </div>
-      <div>
-        <label htmlFor="email">Job Alert Email</label>
-        <input type="text" name="email" onChange={props.onChange} />
-      </div>
-      <div>
-        <label htmlFor="emailEvent">
-          Email Event (BEGIN, END, REQUEUE, ALL)
-        </label>
-        <input type="text" name="emailEvent" onChange={props.onChange} />
-      </div>
+
       <div>
         <label htmlFor="nodelist">Specific Node to Run</label>
         <input type="text" name="nodelist" onChange={props.onChange} />
