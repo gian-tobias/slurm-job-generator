@@ -15,6 +15,11 @@ ul {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+  color: #fafafa;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -189,4 +194,7 @@ header li {
   font-family: Ubuntu;
   font-size: 14px;
   font-weight: 350;
+}
+.hidden {
+  display: none;
 }

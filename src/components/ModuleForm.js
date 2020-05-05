@@ -21,7 +21,7 @@ export default function ModuleForm(props) {
     );
   });
   return (
-    <div className="jobContainer jobForm">
+    <div className={"jobContainer jobForm " + props.hidden}>
       <div className="configTitle">
         <h3>Module Environments</h3>
         <button className="btn viewBtn" onClick={props.changeView}>

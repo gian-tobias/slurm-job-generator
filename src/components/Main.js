@@ -16,6 +16,8 @@ class Main extends React.Component {
       modules: [],
     };
     this.check = "\u00a0";
+    this.sbatchHide = "";
+    this.moduleHide = "hidden";
     this.handleChange = this.handleChange.bind(this);
     this.handlePartitionClick = this.handlePartitionClick.bind(this);
     this.handleGigClick = this.handleGigClick.bind(this);
@@ -125,11 +127,6 @@ class Main extends React.Component {
       this.check = "\u00a0";
     }
   }
-  changeView() {
-    let isSbatch = this.state.isSbatch;
-    console.log(isSbatch);
-    this.setState({ isSbatch: !isSbatch });
-  }
 
   addModulefiles(event) {
     const { name } = event.target;
@@ -143,12 +140,24 @@ class Main extends React.Component {
       this.setState({ modules: modules.concat(name) });
     }
   }
+
+  changeView() {
+    let isSbatch = this.state.isSbatch;
+    this.setState({ isSbatch: !isSbatch });
+    if (!isSbatch) {
+      this.moduleHide = "hidden";
+      this.sbatchHide = "";
+    } else {
+      this.moduleHide = "";
+      this.sbatchHide = "hidden";
+    }
+  }
   render() {
     return (
       <div>
         <h2>Job Settings</h2>
         <div className="jobWrapper">
-          {this.state.isSbatch ? (
+          {/* {this.state.isSbatch ? (
             <JobForm
               onChange={this.handleChange}
               handlePartitionClick={this.handlePartitionClick}
@@ -158,14 +167,31 @@ class Main extends React.Component {
               handleCheckClick={this.handleCheckClick}
               check={this.check}
               changeView={this.changeView}
+              hidden="hidden"
             />
           ) : (
             <ModuleForm
               changeView={this.changeView}
               addModulefiles={this.addModulefiles}
             />
-          )}
-          <JobScript job={this.state} />
+          )} */}
+          <JobForm
+            onChange={this.handleChange}
+            handlePartitionClick={this.handlePartitionClick}
+            handleGigClick={this.handleGigClick}
+            handleEmailClick={this.handleEmailClick}
+            handleEmailAllClick={this.handleEmailAllClick}
+            handleCheckClick={this.handleCheckClick}
+            check={this.check}
+            changeView={this.changeView}
+            hidden={this.sbatchHide}
+          />
+          <ModuleForm
+            changeView={this.changeView}
+            addModulefiles={this.addModulefiles}
+            hidden={this.moduleHide}
+          />
+          <JobScript className="hidden" job={this.state} />
         </div>
       </div>
     );

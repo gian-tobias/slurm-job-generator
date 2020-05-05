@@ -7,9 +7,19 @@ export const Header = () => {
         <h1>saliksik slurm job generator</h1>
         <div className="externalSites">
           <ul>
-            <li>COARE</li>
-            <li>Facebook</li>
-            <li>Service Desk</li>
+            <li>
+              <a href="https://asti.dost.gov.ph/coare/servicedesk/pages/UI.php">
+                User Portal
+              </a>
+            </li>
+            |
+            <li>
+              <a href="https://www.facebook.com/coare.project">Facebook</a>
+            </li>
+            |
+            <li>
+              <a href="https://slurm.schedmd.com/documentation.html">Slurm</a>
+            </li>
           </ul>
         </div>
       </header>

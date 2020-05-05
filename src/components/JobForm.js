@@ -2,7 +2,7 @@ import React from "react";
 
 function JobForm(props) {
   return (
-    <div className="jobContainer jobForm">
+    <div className={"jobContainer jobForm " + props.hidden}>
       <div>
         <div className="configTitle">
           <h3>SBATCH Configuration</h3>
