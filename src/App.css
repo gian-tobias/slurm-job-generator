@@ -73,13 +73,19 @@ header li {
   border-radius: 6px;
   padding: 10px;
 }
+.configTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
 .jobForm h3 {
   text-align: center;
   margin: 0;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
 }
-.jobForm input {
+.jobForm input[type="text"] {
   background-color: #252247;
   color: #fff;
   /* min-width: 300px;
@@ -94,9 +100,13 @@ header li {
 
 .jobForm label {
   font-size: 0.9em;
+  margin-right: 10px;
   display: block;
 }
 
+.inputLabel {
+  display: block;
+}
 .btn {
   margin: 10px 10px 15px 0;
   background-color: #252247;
@@ -106,6 +116,24 @@ header li {
   padding: 3px 8px;
 }
 .btn:hover {
+  cursor: pointer;
+  background-color: #8ec1ef;
+}
+.viewBtn {
+  margin: 0;
+}
+.checkbox {
+  margin: 10px 10px 15px 0;
+  background-color: #252247;
+  color: #fafafa;
+  border: 1.5px solid #fafafa;
+  border-radius: 5px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  line-height: 1;
+}
+.checkbox:hover {
   cursor: pointer;
   background-color: #8ec1ef;
 }

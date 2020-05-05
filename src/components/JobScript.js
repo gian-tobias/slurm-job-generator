@@ -1,31 +1,34 @@
 import React from "react";
 import JobLine from "./JobLine";
+import ModuleLine from "./ModuleLine";
 
 function JobScript(props) {
   const PREFIX_TABLE = {
-    jobName: "--job-name",
-    nodes: "--nodes",
-    ntasks: "--ntasks",
-    ntasksNode: "--ntasks-per-node",
-    partition: "--partition",
-    qos: "--qos",
-    memory: "--mem",
-    output: "--output",
-    error: "--error",
-    email: "--mail-user",
-    emailEvent: "--mail-type",
-    nodelist: "--nodelist",
-    jobArray: "--array",
+    jobName: "--job-name=",
+    nodes: "--nodes=",
+    ntasks: "--ntasks=",
+    ntasksNode: "--ntasks-per-node=",
+    partition: "--partition=",
+    qos: "--qos=",
+    memory: "--mem=",
+    output: "--output=",
+    error: "--error=",
+    email: "--mail-user=",
+    emailEvent: "--mail-type=",
+    nodelist: "--nodelist=",
+    jobArray: "--array=",
     gpu: "--gres=gpu:",
     requeue: "--requeue",
   };
 
   const { job } = props;
   const keys = Object.keys(job);
-  const renderScript = keys.map((key, index) => {
-    console.log(job[key]);
+
+  const renderSbatch = keys.map((key, index) => {
     let jobValue = job[key];
-    if (key === "emailEvent" && jobValue.length) {
+    if (key === "isSbatch" || key === "modules") {
+      return null;
+    } else if (key === "emailEvent" && jobValue.length) {
       return (
         <JobLine
           key={index}
@@ -33,8 +36,9 @@ function JobScript(props) {
           value={jobValue.join(",").toUpperCase()}
         />
       );
+    } else if (key === "requeue" && jobValue === true) {
+      return <JobLine key={index} prefix={PREFIX_TABLE[key]} />;
     } else if (jobValue.length) {
-      console.log(jobValue.length);
       return (
         <JobLine key={index} prefix={PREFIX_TABLE[key]} value={jobValue} />
       );
@@ -46,7 +50,9 @@ function JobScript(props) {
   //   if (key[1]) return <JobLine prefix={PREFIX_TABLE[key[0]]} value={key[1]} />;
   //   return null;
   // });
-
+  const renderModule = job.modules.map((value, index) => {
+    return <ModuleLine key={index} value={value} />;
+  });
   return (
     <div className="jobContainer jobScript">
       <div className="titleBar">
@@ -56,9 +62,11 @@ function JobScript(props) {
         <p>File</p>
       </div>
       <pre>#!/bin/bash</pre>
-      {renderScript}
+      {renderSbatch}
       {/* <JobLine value={props.job.jobName} />
       <JobLine value={props.job.nodes} /> */}
+      <br />
+      {renderModule}
     </div>
   );
 }

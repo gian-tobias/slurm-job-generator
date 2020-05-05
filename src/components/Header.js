@@ -9,7 +9,7 @@ export const Header = () => {
           <ul>
             <li>COARE</li>
             <li>Facebook</li>
-            <li>Twitter</li>
+            <li>Service Desk</li>
           </ul>
         </div>
       </header>

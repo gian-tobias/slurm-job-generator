@@ -1,6 +1,7 @@
 import React from "react";
 import JobForm from "./JobForm";
 import JobScript from "./JobScript";
+import ModuleForm from "./ModuleForm";
 
 class Main extends React.Component {
   constructor(props) {
@@ -11,13 +12,17 @@ class Main extends React.Component {
       jobName: "",
       email: "",
       emailEvent: [],
+      isSbatch: true,
+      modules: [],
     };
-
+    this.check = "\u00a0";
     this.handleChange = this.handleChange.bind(this);
     this.handlePartitionClick = this.handlePartitionClick.bind(this);
     this.handleGigClick = this.handleGigClick.bind(this);
     this.handleEmailClick = this.handleEmailClick.bind(this);
-    this.handleEmailAllClick = this.handleEmailAllClick.bind(this);
+    this.handleCheckClick = this.handleCheckClick.bind(this);
+    this.addModulefiles = this.addModulefiles.bind(this);
+    this.changeView = this.changeView.bind(this);
   }
   handleChange(event) {
     const { name, value } = event.target;
@@ -76,58 +81,90 @@ class Main extends React.Component {
     //this.handleClickActive(event);
   }
   handleEmailClick(event) {
-    const { name } = event.target;
+    const { name, parentElement } = event.target;
     const stateEmail = this.state.emailEvent;
     let emailEvent;
+
+    // CSS
+    const buttons = parentElement.children;
 
     if (name === "all" && !stateEmail.includes(name)) {
       // if selection is "all" and "all" does not exist
       emailEvent = stateEmail.slice(stateEmail.length).concat(name);
+      for (let button of buttons) {
+        button.className = "btn btnActive";
+      }
     } else if (name === "all") {
       // selection is all and it exists
       emailEvent = stateEmail.slice(stateEmail.length);
+      for (let button of buttons) {
+        button.className = "btn";
+      }
     } else if (stateEmail.includes("all")) {
       // array contains all
       emailEvent = stateEmail.slice();
     } else if (stateEmail.includes(name)) {
       // selection already exists
       emailEvent = stateEmail.slice().filter((email) => email !== name);
+      event.target.className = "btn";
     } else {
       // selection doesn't exist
       emailEvent = stateEmail.slice().concat(name);
+      event.target.className = "btn btnActive";
     }
     this.setState({ emailEvent: emailEvent });
-    // const emailEvent =
-    //   stateEmail.includes("all") && name !== "all"
-    //     ? stateEmail.slice(stateEmail.length)
-    //     : stateEmail.slice();
-    // console.log("email event", emailEvent);
-    // if (emailEvent.includes(name)) {
-    //   let emailArray = emailEvent.filter((email) => email !== name);
-    //   console.log("emailArray", emailArray);
-    //   return this.setState({ emailEvent: emailArray });
-    // }
-    // this.setState({ emailEvent: emailEvent.concat(name) });
   }
-  handleEmailAllClick(event) {
+  handleCheckClick(event) {
+    if (!this.state.requeue) {
+      this.setState({ requeue: true });
+      event.target.className = "checkbox btnActive";
+      this.check = "\u2713";
+    } else {
+      event.target.className = "checkbox";
+      this.setState({ requeue: false });
+      this.check = "\u00a0";
+    }
+  }
+  changeView() {
+    let isSbatch = this.state.isSbatch;
+    console.log(isSbatch);
+    this.setState({ isSbatch: !isSbatch });
+  }
+
+  addModulefiles(event) {
     const { name } = event.target;
-    const emailEvent = this.state.emailEvent.slice(
-      this.state.emailEvent.length
-    );
-    this.setState({ emailEvent: emailEvent.concat([name]) });
+    let modules = this.state.modules.slice();
+    if (modules.includes(name)) {
+      modules = modules.filter((module) => module !== name);
+      event.target.className = "btn";
+      this.setState({ modules: modules });
+    } else {
+      event.target.className = "btn btnActive";
+      this.setState({ modules: modules.concat(name) });
+    }
   }
   render() {
     return (
       <div>
         <h2>Job Settings</h2>
         <div className="jobWrapper">
-          <JobForm
-            onChange={this.handleChange}
-            handlePartitionClick={this.handlePartitionClick}
-            handleGigClick={this.handleGigClick}
-            handleEmailClick={this.handleEmailClick}
-            handleEmailAllClick={this.handleEmailAllClick}
-          />
+          {this.state.isSbatch ? (
+            <JobForm
+              onChange={this.handleChange}
+              handlePartitionClick={this.handlePartitionClick}
+              handleGigClick={this.handleGigClick}
+              handleEmailClick={this.handleEmailClick}
+              handleEmailAllClick={this.handleEmailAllClick}
+              handleCheckClick={this.handleCheckClick}
+              check={this.check}
+              changeView={this.changeView}
+            />
+          ) : (
+            <ModuleForm
+              changeView={this.changeView}
+              addModulefiles={this.addModulefiles}
+            />
+          )}
           <JobScript job={this.state} />
         </div>
       </div>
