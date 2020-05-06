@@ -14,6 +14,7 @@ class Main extends React.Component {
       emailEvent: [],
       isSbatch: true,
       modules: [],
+      isModulesCpu: true,
     };
     this.check = "\u00a0";
     this.sbatchHide = "";
@@ -25,6 +26,8 @@ class Main extends React.Component {
     this.handleCheckClick = this.handleCheckClick.bind(this);
     this.addModulefiles = this.addModulefiles.bind(this);
     this.changeView = this.changeView.bind(this);
+    this.toggleCpuModules = this.toggleCpuModules.bind(this);
+    this.toggleGpuModules = this.toggleGpuModules.bind(this);
   }
   handleChange(event) {
     const { name, value } = event.target;
@@ -133,10 +136,10 @@ class Main extends React.Component {
     let modules = this.state.modules.slice();
     if (modules.includes(name)) {
       modules = modules.filter((module) => module !== name);
-      event.target.className = "btn";
+      // event.target.className = "btn";
       this.setState({ modules: modules });
     } else {
-      event.target.className = "btn btnActive";
+      // event.target.className = "btn btnActive";
       this.setState({ modules: modules.concat(name) });
     }
   }
@@ -152,6 +155,15 @@ class Main extends React.Component {
       this.sbatchHide = "hidden";
     }
   }
+
+  toggleCpuModules() {
+    this.setState({ isModulesCpu: true });
+  }
+
+  toggleGpuModules() {
+    this.setState({ isModulesCpu: false });
+  }
+
   render() {
     return (
       <div>
@@ -190,6 +202,10 @@ class Main extends React.Component {
             changeView={this.changeView}
             addModulefiles={this.addModulefiles}
             hidden={this.moduleHide}
+            modules={this.state.modules}
+            isModulesCpu={this.state.isModulesCpu}
+            toggleCpuModules={this.toggleCpuModules}
+            toggleGpuModules={this.toggleGpuModules}
           />
           <JobScript className="hidden" job={this.state} />
         </div>
