@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "63e61bf9facff6f9a52d20d3b5552e29",
+    "revision": "c627ba3b1cdb2ee303cd390e3fc7fa4f",
     "url": "/slurm-job-generator/index.html"
   },
   {
-    "revision": "e900cdf59e9c96e08957",
+    "revision": "0dae6456792fd445a57c",
     "url": "/slurm-job-generator/static/css/main.8cde849e.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/slurm-job-generator/static/js/2.daf57174.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e900cdf59e9c96e08957",
-    "url": "/slurm-job-generator/static/js/main.7b68da03.chunk.js"
+    "revision": "0dae6456792fd445a57c",
+    "url": "/slurm-job-generator/static/js/main.9a22e07a.chunk.js"
   },
   {
     "revision": "2fe3e7fdc20b6ea55468",
