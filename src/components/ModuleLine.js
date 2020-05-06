@@ -1,7 +1,13 @@
 import React from "react";
 
 function ModuleLine(props) {
-  return <pre>module load {props.value}</pre>;
+  // return <React.Fragment>module load {props.value}</React.Fragment>;
+  return (
+    <React.Fragment>
+      module load {props.value}
+      <br />
+    </React.Fragment>
+  );
 }
 
 export default ModuleLine;

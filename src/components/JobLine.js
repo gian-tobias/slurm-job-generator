@@ -2,10 +2,11 @@ import React from "react";
 
 function JobLine(props) {
   return (
-    <pre>
+    <React.Fragment>
       #SBATCH {props.prefix}
       {props.value}
-    </pre>
+      <br />
+    </React.Fragment>
   );
 }
 

@@ -56,17 +56,20 @@ function JobScript(props) {
   return (
     <div className="jobContainer jobScript">
       <div className="titleBar">
-        <p>gian-thinkpad</p>
+        <p>Slurm Job Template</p>
       </div>
       <div className="helpBar">
-        <p>File</p>
+        <p>Copy this template to the saliksik cluster</p>
       </div>
-      <pre>#!/bin/bash</pre>
-      {renderSbatch}
-      {/* <JobLine value={props.job.jobName} />
+      <pre>
+        #!/bin/bash
+        <br />
+        {renderSbatch}
+        {/* <JobLine value={props.job.jobName} />
       <JobLine value={props.job.nodes} /> */}
-      <br />
-      {renderModule}
+        <br />
+        {renderModule}
+      </pre>
     </div>
   );
 }
