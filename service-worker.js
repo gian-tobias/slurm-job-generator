@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/slurm-job-generator/precache-manifest.f6b66773d1c04cc3e4ed8eb3c5192903.js"
+  "/slurm-job-generator/precache-manifest.008ac1ec38dabe39a90e1841912c0f72.js"
 );
 
 self.addEventListener('message', (event) => {
